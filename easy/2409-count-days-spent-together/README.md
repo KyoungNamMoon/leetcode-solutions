@@ -44,8 +44,8 @@ Explanation: There is no day when Alice and Bob are in Rome together, so we retu
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 42.3 MB (beats 94.97%)  
-**Submitted:** 2026-10-24T01:15:15.158Z  
+**Memory:** 42 MB (beats 100.00%)  
+**Submitted:** 2026-10-24T01:16:14.041Z  
 
 ```java
 class Solution {
@@ -85,6 +85,8 @@ class Solution {
         int end = Math.min(taliceDay2, tbobDay2);
         return end - start < 0 ? 0 : end - start + 1;
     }
+    //Math.max Math.min 유형 (Meeting Room)
+    //Day로 변환해서 계산하기
 }
 ```
 
