@@ -35,4 +35,6 @@ class Solution {
         int end = Math.min(taliceDay2, tbobDay2);
         return end - start < 0 ? 0 : end - start + 1;
     }
+    //Math.max Math.min 유형 (Meeting Room)
+    //Day로 변환해서 계산하기
 }
