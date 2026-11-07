@@ -52,9 +52,9 @@ For queries[1]: Only server with id 3 gets no request in the duration [2,4].
 ## Solution
 
 **Language:** Java  
-**Runtime:** 32 ms (beats 70.19%)  
-**Memory:** 131.3 MB (beats 99.04%)  
-**Submitted:** 2026-11-07T00:07:36.304Z  
+**Runtime:** 31 ms (beats 75.00%)  
+**Memory:** 134.4 MB (beats 80.77%)  
+**Submitted:** 2026-11-07T00:14:33.361Z  
 
 ```java
 class Solution {
@@ -75,15 +75,15 @@ class Solution {
        for (int[] q : sortedQueries) {
         int endTime = q[0];
         int startTime = endTime - x;
-       while (right < logs.length && logs[right][1] <= endTime) {
-                int serverId = logs[right][0];
-                if (serverCounts[serverId] == 0) {
-                    activeServers++; 
-                }
-                serverCounts[serverId]++;
-                right++;
+        while (right < logs.length && logs[right][1] <= endTime) {
+            int serverId = logs[right][0];
+            if (serverCounts[serverId] == 0) {
+                activeServers++; 
+            }
+            serverCounts[serverId]++;
+            right++;
         }
-        
+
         while (left < logs.length && logs[left][1] < startTime) {
             int serverId = logs[left][0];
             serverCounts[serverId]--;
@@ -91,9 +91,7 @@ class Solution {
                 activeServers--;
             }
             left++;
-        }
-            
-          
+            }
             result[q[1]] = n - activeServers;
         }
         
