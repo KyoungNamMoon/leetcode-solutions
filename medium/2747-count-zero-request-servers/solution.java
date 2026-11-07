@@ -16,15 +16,15 @@ class Solution {
        for (int[] q : sortedQueries) {
         int endTime = q[0];
         int startTime = endTime - x;
-       while (right < logs.length && logs[right][1] <= endTime) {
-                int serverId = logs[right][0];
-                if (serverCounts[serverId] == 0) {
-                    activeServers++; 
-                }
-                serverCounts[serverId]++;
-                right++;
+        while (right < logs.length && logs[right][1] <= endTime) {
+            int serverId = logs[right][0];
+            if (serverCounts[serverId] == 0) {
+                activeServers++; 
+            }
+            serverCounts[serverId]++;
+            right++;
         }
-        
+
         while (left < logs.length && logs[left][1] < startTime) {
             int serverId = logs[left][0];
             serverCounts[serverId]--;
@@ -32,9 +32,7 @@ class Solution {
                 activeServers--;
             }
             left++;
-        }
-            
-          
+            }
             result[q[1]] = n - activeServers;
         }
         
