@@ -62,34 +62,40 @@ The subarray `[1, 2]` has a length of 2 and the minimum sum greater than 0. So, 
 ## Solution
 
 **Language:** Java  
-**Runtime:** 5 ms (beats 53.06%)  
-**Memory:** 45.8 MB (beats 87.14%)  
-**Submitted:** 2026-11-14T03:12:56.482Z  
+**Runtime:** 7 ms (beats 25.92%)  
+**Memory:** 46.2 MB (beats 50.82%)  
+**Submitted:** 2026-11-14T03:25:46.637Z  
 
 ```java
 class Solution {
     public int minimumSumSubarray(List<Integer> nums, int l, int r) {
-
-        int minSum = Integer.MAX_VALUE;
         int n = nums.size();
+        int[] prefix = new int[n + 1];
         for (int i = 0; i < n; i++) {
-         int currentSum = 0;
-
-         for (int j = i; j < n;j++) {
-            currentSum += nums.get(j);
-            int size = j - i + 1;
-            if (size > r) {
-                break;
+            prefix[i + 1] = prefix[i] + nums.get(i);
+        }
+        int minSum = Integer.MAX_VALUE;
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        for (int i = l; i <= n; i++) {
+            int addIndex = i - l;
+            map.put(prefix[addIndex], map.getOrDefault(prefix[addIndex], 0) + 1);
+            if (i > r) {
+                int removeIndex = i - r - 1;
+                int count = map.get(prefix[removeIndex]);
+                if (count == 1) {
+                    map.remove(prefix[removeIndex]);
+                } else {
+                    map.put(prefix[removeIndex], count - 1);
+                }
             }
-            if (size >= l && currentSum > 0) {
-                minSum = Math.min(minSum, currentSum);
+            Integer lowerKey = map.lowerKey(prefix[i]);
+            if (lowerKey != null) {
+                minSum = Math.min(minSum, prefix[i] - lowerKey);
             }
         }
-       }
-       if (minSum == Integer.MAX_VALUE) {
-        return -1;
-       }
-       return minSum;
+        return minSum == Integer.MAX_VALUE ? -1 : minSum;
+
+       
     }
 }
 ```
