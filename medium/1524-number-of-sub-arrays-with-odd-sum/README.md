@@ -53,8 +53,8 @@ Output: 16
 
 **Language:** Java  
 **Runtime:** 7 ms (beats 80.03%)  
-**Memory:** 81.4 MB (beats 71.24%)  
-**Submitted:** 2026-11-15T23:25:58.179Z  
+**Memory:** 81.8 MB (beats 54.31%)  
+**Submitted:** 2026-11-15T23:26:43.432Z  
 
 ```java
 class Solution {
@@ -82,6 +82,9 @@ for (int i = 1; i < prefix.length; i++) {
 
     }
 }
+//prefix + 홀짝빼기를 이용한 문제
+//홀수 - 짝수 = 홀수
+//짝수 - 홀수는 = 홀수
 ```
 
 ---
