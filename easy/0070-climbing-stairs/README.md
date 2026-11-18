@@ -45,8 +45,8 @@ Explanation: There are three ways to climb to the top.
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 41.4 MB (beats 85.89%)  
-**Submitted:** 2026-11-18T02:47:10.497Z  
+**Memory:** 41.6 MB (beats 66.96%)  
+**Submitted:** 2026-11-18T02:49:54.682Z  
 
 ```java
 class Solution {
@@ -54,14 +54,15 @@ class Solution {
         if (n <= 2) {
             return n;
         }
-        int[] way = new int[n + 1];
-        way[0] = 0;
-        way[1] = 1;
-        way[2] = 2;
+        int result = 0;
+        int prev1 = 1;
+        int prev2 = 2;
         for (int i = 3; i <= n; i++) {
-            way[i] = way[i - 1] + way[i - 2];
+            result = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = result;
         }
-        return way[n];
+        return result;
     }
 }
 ```
