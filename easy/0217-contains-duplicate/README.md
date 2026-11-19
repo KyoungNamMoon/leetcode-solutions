@@ -46,18 +46,20 @@ All elements are distinct.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 25 ms (beats 19.92%)  
-**Memory:** 92.4 MB (beats 82.08%)  
-**Submitted:** 2026-11-19T02:35:09.608Z  
+**Runtime:** 14 ms (beats 91.83%)  
+**Memory:** 108.6 MB (beats 17.15%)  
+**Submitted:** 2026-11-19T02:36:18.003Z  
 
 ```java
 class Solution {
     public boolean containsDuplicate(int[] nums) {
         Set<Integer> set = new HashSet<>();
         for (int x : nums) {
-            set.add(x);
+            if (!set.add(x)) {
+                return true;
+            }
         }
-        return set.size() != nums.length;
+        return false;
     }
 }
 ```
