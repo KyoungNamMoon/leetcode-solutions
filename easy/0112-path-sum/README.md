@@ -52,8 +52,8 @@ Explanation: Since the tree is empty, there are no root-to-leaf paths.
 
 **Language:** Java  
 **Runtime:** 0 ms (beats 100.00%)  
-**Memory:** 44.4 MB (beats 82.75%)  
-**Submitted:** 2026-11-20T04:09:05.633Z  
+**Memory:** 44.7 MB (beats 55.37%)  
+**Submitted:** 2026-11-20T04:10:44.841Z  
 
 ```java
 /**
@@ -76,21 +76,14 @@ class Solution {
         if (root == null) {
             return false;
         }
-        int current = 0;
-        return dfs(root, targetSum, current);
-        
-    }
-    private boolean dfs(TreeNode root, int targetSum, int current) {
-        if (root == null) {
-            return false;
-        }
-        current += root.val;
-        if (current == targetSum && (root.left == null && root.right == null)) {
+        targetSum -= root.val;
+        if (0 == targetSum && (root.left == null && root.right == null)) {
             return true;
         }
-        return dfs(root.left, targetSum, current) || dfs(root.right, targetSum, current);
+        return hasPathSum(root.left, targetSum) || hasPathSum(root.right, targetSum);
 
     }
+  
 }
 ```
 
