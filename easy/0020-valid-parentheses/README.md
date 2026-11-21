@@ -57,31 +57,31 @@ Java
 
 **Language:** Java  
 **Runtime:** 6 ms (beats 5.49%)  
-**Memory:** 42.8 MB (beats 79.93%)  
-**Submitted:** 2026-11-21T03:21:58.437Z  
+**Memory:** 43.6 MB (beats 7.97%)  
+**Submitted:** 2026-11-21T03:25:01.528Z  
 
 ```java
 class Solution {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(' || s.charAt(i)  == '{' || s.charAt(i) == '[') {
-                stack.push(s.charAt(i));
-            } else {
-                if (!stack.isEmpty() && isPair(stack.peek(),s.charAt(i))) {
+            if (!stack.isEmpty()) {
+                if (s.charAt(i) == ')' && stack.peek() =='(') {
+                    stack.pop();
+                } else if (s.charAt(i) == ']' && stack.peek() == '[') {
+                    stack.pop();
+                } else if (s.charAt(i) =='}' && stack.peek() == '{') {
                     stack.pop();
                 } else {
                     stack.push(s.charAt(i));
-                }
+                } 
+            } else {
+                stack.push(s.charAt(i));
             }
+
         }
         return stack.isEmpty();
     }
-    private boolean isPair(char last, char cur) {
-        return (last == '(' && cur == ')') ||
-               (last == '{' && cur == '}') ||
-               (last == '[' && cur == ']');
-    } 
 }
 ```
 
