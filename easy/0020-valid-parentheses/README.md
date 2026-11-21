@@ -56,32 +56,32 @@ Java
 ## Solution
 
 **Language:** Java  
-**Runtime:** 4 ms (beats 41.25%)  
-**Memory:** 43.4 MB (beats 19.38%)  
-**Submitted:** 2026-11-21T03:14:46.136Z  
+**Runtime:** 6 ms (beats 5.49%)  
+**Memory:** 42.8 MB (beats 79.93%)  
+**Submitted:** 2026-11-21T03:21:58.437Z  
 
 ```java
 class Solution {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
-            if (!stack.isEmpty()) {
-                if (s.charAt(i) == ')' && stack.peek() =='(') {
-                    stack.pop();
-                } else if (s.charAt(i) == ']' && stack.peek() == '[') {
-                    stack.pop();
-                } else if (s.charAt(i) =='}' && stack.peek() == '{') {
+            if (s.charAt(i) == '(' || s.charAt(i)  == '{' || s.charAt(i) == '[') {
+                stack.push(s.charAt(i));
+            } else {
+                if (!stack.isEmpty() && isPair(stack.peek(),s.charAt(i))) {
                     stack.pop();
                 } else {
                     stack.push(s.charAt(i));
-                } 
-            } else {
-                stack.push(s.charAt(i));
+                }
             }
-
         }
         return stack.isEmpty();
     }
+    private boolean isPair(char last, char cur) {
+        return (last == '(' && cur == ')') ||
+               (last == '{' && cur == '}') ||
+               (last == '[' && cur == ']');
+    } 
 }
 ```
 
