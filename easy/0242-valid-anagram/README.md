@@ -36,28 +36,23 @@ Java
 ## Solution
 
 **Language:** Java  
-**Runtime:** 16 ms (beats 24.56%)  
-**Memory:** 46 MB (beats 36.29%)  
-**Submitted:** 2026-11-22T02:19:57.462Z  
+**Runtime:** 5 ms (beats 67.89%)  
+**Memory:** 43.8 MB (beats 90.40%)  
+**Submitted:** 2026-11-22T02:30:56.604Z  
 
 ```java
 class Solution {
     public boolean isAnagram(String s, String t) {
-        Map<Character, Integer> map = new HashMap<>();
-        for (char c : s.toCharArray()) {
-            map.put(c, map.getOrDefault(c, 0) + 1);
+        if (s.length() != t.length()) return false;
+        int[] array = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            array[s.charAt(i) - 'a']++;
+            array[t.charAt(i) - 'a']--;
         }
-        for (char c : t.toCharArray()) {
-            if (map.containsKey(c)) {
-                map.put(c, map.get(c) - 1);
-                if (map.get(c) == 0) {
-                    map.remove(c);
-                }
-            } else {
-                return false;
-            }
+        for (int x : array) {
+            if (x != 0) return false;
         }
-        return map.isEmpty();
+        return true;
     }
 }
 ```
