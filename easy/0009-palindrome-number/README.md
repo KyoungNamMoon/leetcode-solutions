@@ -50,25 +50,21 @@ Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 ## Solution
 
 **Language:** Java  
-**Runtime:** 14 ms (beats 41.18%)  
-**Memory:** 45.4 MB (beats 76.57%)  
-**Submitted:** 2026-11-19T02:32:37.089Z  
+**Runtime:** 13 ms (beats 57.49%)  
+**Memory:** 45.3 MB (beats 84.34%)  
+**Submitted:** 2026-11-22T03:21:24.685Z  
 
 ```java
 class Solution {
     public boolean isPalindrome(int x) {
-        if (x < 0) {
-            return false;
-        }
         int reverse = 0;
-        int xcopy = x;
+        int original = x;
         while (x > 0) {
-            reverse  = (reverse * 10) + (x % 10);
+            int digit = x % 10;
             x = x / 10;
+            reverse = reverse * 10 + (digit);
         }
-        return reverse == xcopy;
-
-
+        return reverse == original;
     }
 }
 ```
